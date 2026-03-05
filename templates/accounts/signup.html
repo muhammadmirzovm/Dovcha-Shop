@@ -1,13 +1,18 @@
 {% extends "base.html" %}
+{% load crispy_forms_tags %}
 {% block title %}Register{% endblock %}
 {% block content %}
-<div>
-   <h1>Ro‘yxatdan o‘tish</h1>
+<div class="container bg-light border rounded p-3 mx-auto my-5 col-4 signup-form">
+   <h1 class="text-center">Signup</h1>
    <form method="post">
        {% csrf_token %}
-       {{ form.as_p }}
-       <button type="submit">Sign up</button>
+       <div class="">
+        {{ form | crispy }}
+       </div>
+       <div class="text-center">
+        <button class="m-3 btn btn-secondary" type="submit">Signup</button>
+       </div>
    </form>
-   <p>Akkount bormi?<a href="{% url 'login' %}">Login</a></p>
+   <p class="text-center">Akkount bormi?<a class="text-secondary" href="{% url 'login' %}"> Login </a></p>
 </div>
 {% endblock %}

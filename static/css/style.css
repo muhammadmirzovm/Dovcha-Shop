@@ -3,3 +3,22 @@
     bottom: 0;
     right: 10px;
 }
+
+.signup-form  .helptext , li{
+    display: none;
+}
+.navbar-username{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+.navbar-username a{
+    width: 30px;
+    height: 30px;
+    /* padding: 10px; */
+    border-radius: 50%;
+    display: inline-block;
+    text-align: center;
+    font-size: 20px;
+    text-decoration: none;
+}

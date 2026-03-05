@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}Profile{% endblock %}
+
+{% block content %}
+<div class="container border rounded bg-light p-4" style="max-width:600px; margin-top:60px;">
+
+    <div style="text-align:center; margin-bottom:20px;">
+        {% if profile_user.image %}
+            <img src="{{ profile_user.image.url }}" 
+                 alt="avatar"
+                 style="width:90px;height:90px;border-radius:50%;object-fit:cover;">
+        {% else %}
+            <div style="width:90px;height:90px;border-radius:50%;background:#eee;
+                        display:flex;align-items:center;justify-content:center;
+                        font-size:32px;font-weight:600;margin:auto;">
+                {{ profile_user.first_name|slice:":1"|upper }}
+            </div>
+        {% endif %}
+    </div>
+
+    <h2 style="text-align:center;">
+        {{ profile_user.first_name }} {{ profile_user.last_name }}
+    </h2>
+
+    <p style="text-align:center;color:gray;">
+        @{{ profile_user.username }} • {{ profile_user.role }}
+    </p>
+
+    <hr>
+
+    <p><strong>Email:</strong> {{ profile_user.email|default:"-" }}</p>
+    <p><strong>Telefon:</strong> {{ profile_user.phone|default:"-" }}</p>
+    <p><strong>Manzil:</strong> {{ profile_user.address_text|default:"-" }}</p>
+
+    <div style="margin-top:20px;">
+        <a class="btn btn-secondary" href="{% url 'profile_edit' %}" style="text-decoration:none;">
+            Profilni tahrirlash
+        </a>
+    </div>
+
+</div>
+{% endblock %}
