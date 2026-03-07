@@ -8,6 +8,8 @@ from .forms import SignUpForm, ProfileForm
 from .models import User
 from django.contrib.auth.mixins import LoginRequiredMixin
 
+from django.contrib.auth import views as auth_views
+
 
 
 
@@ -68,3 +70,15 @@ class ProfileUpdateView(LoginRequiredMixin, UpdateView):
        return super().form_invalid(form)
 
 
+
+class MyPasswordChangeView(auth_views.PasswordChangeView):
+   def form_valid(self, form):
+       messages.success(self.request, "Parol o‘zgartirildi ✅")
+       return super().form_valid(form)
+
+
+class MyPasswordResetView(auth_views.PasswordResetView):
+   def form_valid(self, form):
+       messages.info(self.request, "Reset link yuborildi (dev: terminalda) 📩")
+       return super().form_valid(form)
+   

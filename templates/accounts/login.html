@@ -13,6 +13,11 @@
         <button class="m-3 btn btn-secondary" type="submit">Login</button>
        </div>
    </form>
+        <p class="text-center">
+         Parolni unutdingizmi?
+        <a href="{% url 'password_reset' %}">Password reset</a>
+       </p>
    <p class="text-center">Akkount yo‘qmi?<a class="text-secondary" href="{% url 'signup' %}"> Register </a></p>
+
 </div>
 {% endblock %}
