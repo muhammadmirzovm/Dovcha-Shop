@@ -5,7 +5,7 @@
 }
 
 .signup-form  .helptext , li{
-    display: none;
+    /* display: none; */
 }
 .navbar-username{
     display: flex;

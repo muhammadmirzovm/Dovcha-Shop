@@ -1,0 +1,86 @@
+{% extends "base.html" %}
+{% block title %}{{ product.name }}{% endblock %}
+
+{% block content %}
+<div class="container py-5">
+
+  <div class="row g-5">
+
+    <!-- IMAGE -->
+    <div class="col-md-5">
+
+      <div class="card border-0 shadow-sm">
+        {% if product.main_image %}
+          <img src="{{ product.main_image.url }}" class="img-fluid rounded" alt="{{ product.name }}">
+        {% else %}
+          <div class="d-flex align-items-center justify-content-center bg-light rounded" style="height:320px;">
+            <span class="text-muted">No image</span>
+          </div>
+        {% endif %}
+      </div>
+
+      {% if product.images.all %}
+      <div class="d-flex gap-2 mt-3 flex-wrap">
+        {% for img in product.images.all %}
+          <img src="{{ img.image.url }}"
+               alt="{{ img.alt_text }}"
+               class="border rounded"
+               style="width:80px;height:80px;object-fit:cover;">
+        {% endfor %}
+      </div>
+      {% endif %}
+
+    </div>
+
+    <!-- PRODUCT INFO -->
+    <div class="col-md-7">
+
+      <h1 class="fw-semibold mb-2">{{ product.name }}</h1>
+
+      <p class="text-muted mb-3">
+        Seller: {{ product.seller.username }}
+        {% if product.category %}
+        | Category: {{ product.category.name }}
+        {% endif %}
+      </p>
+
+      <h3 class="fw-bold mb-4">{{ product.price }} $</h3>
+
+      {% if product.short_description %}
+      <p class="text-muted">{{ product.short_description }}</p>
+      {% endif %}
+
+      {% if product.description %}
+      <p class="mb-4">{{ product.description }}</p>
+      {% endif %}
+
+      <div class="border-top pt-3 mb-4">
+        <ul class="list-unstyled mb-0">
+          <li><strong>Stock:</strong> {{ product.stock }}</li>
+          <li>
+            <strong>Status:</strong>
+            {% if product.is_active %}
+              <span class="text-success">Active</span>
+            {% else %}
+              <span class="text-secondary">Inactive</span>
+            {% endif %}
+          </li>
+        </ul>
+      </div>
+
+      <div class="d-flex gap-2">
+        <button class="btn btn-dark" disabled>
+          Add to cart
+        </button>
+
+        <a href="{% url 'product_list' %}" class="btn btn-outline-dark">
+          Back
+        </a>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+{% endblock %}
